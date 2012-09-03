@@ -42,11 +42,11 @@ function(app) {
       var twitterData = [];
       $.ajax('/twitter/' + this.get('user_id') + '/data', {
         success: function(data, textStatus, jqXHR){
-          model.set('twitterData', data).set('message', 'Carregando vídeos do canal.').fetchVideos();
+          model.set('twitterData', data).set('message', 'Loading videos from channel.').fetchVideos();
           model.setScreen();
         },
         error: function(jqXHR, textStatus, errorThrown){
-          model.set('message', 'Usuário não tem nenhuma mensagem. Que droga.');
+          model.set('message', 'User has any status message. So bad.');
         }
       });
     },
@@ -117,12 +117,12 @@ function(app) {
       }
       $.ajax('/twitter/' + username, {
         success: function(data, textStatus, jqXHR) {
-          data.message = 'Carregando conteúdo do twitter.';
+          data.message = 'Loading content from Twitter.';
           app.channel = new Channel.Model(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
           if (jqXHR.status == '404') {
-            alert('Esse usuário não existe!');
+            alert('User does not exists!');
           } else {
             console.log(jqXHR);
           }
